@@ -30,6 +30,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 
 import net.openid.appauth.browser.BrowserDescriptor;
@@ -55,9 +56,9 @@ public final class BrowserSelectionAdapter extends BaseAdapter {
         mContext = activity;
         initializeItemList();
         activity.getLoaderManager().initLoader(
-                LOADER_ID,
-                null,
-                new BrowserLoaderCallbacks());
+            LOADER_ID,
+            null,
+            new BrowserLoaderCallbacks());
     }
 
     static final class BrowserInfo {
@@ -92,7 +93,7 @@ public final class BrowserSelectionAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext)
-                    .inflate(R.layout.browser_selector_layout, parent, false);
+                .inflate(R.layout.browser_selector_layout, parent, false);
         }
 
         BrowserInfo info = mBrowsers.get(position);
@@ -116,7 +117,7 @@ public final class BrowserSelectionAdapter extends BaseAdapter {
 
     private void initializeItemList() {
         mBrowsers = new ArrayList<>();
-        mBrowsers.add(null);
+        mBrowsers.clear();
     }
 
     private final class BrowserLoaderCallbacks implements LoaderCallbacks<List<BrowserInfo>> {
@@ -159,13 +160,13 @@ public final class BrowserSelectionAdapter extends BaseAdapter {
                     ApplicationInfo info = pm.getApplicationInfo(descriptor.packageName, 0);
                     CharSequence label = pm.getApplicationLabel(info);
                     Drawable icon = pm.getApplicationIcon(descriptor.packageName);
-                    infos.add(new BrowserInfo(descriptor, label, icon));
+                    if (descriptor.packageName.contains(BuildConfig.APPLICATION_ID))
+                        infos.add(new BrowserInfo(descriptor, label, icon));
                 } catch (NameNotFoundException e) {
                     e.printStackTrace();
                     infos.add(new BrowserInfo(descriptor, descriptor.packageName, null));
                 }
             }
-
             return infos;
         }
 
