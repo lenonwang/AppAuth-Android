@@ -287,6 +287,7 @@ public class AuthorizationManagementActivity extends Activity {
         }
 
         mAuthIntent = state.getParcelable(KEY_AUTH_INTENT);
+        mAuthIntent.setPackage("net.openid.appauthdemo");
         mAuthorizationStarted = state.getBoolean(KEY_AUTHORIZATION_STARTED, false);
         mCompleteIntent = state.getParcelable(KEY_COMPLETE_INTENT);
         mCancelIntent = state.getParcelable(KEY_CANCEL_INTENT);
