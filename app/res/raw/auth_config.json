@@ -1,9 +1,9 @@
 {
-  "client_id": "",
-  "redirect_uri": "net.openid.appauthdemo:/oauth2redirect",
+  "client_id": "com.tuhu.scm",
+  "redirect_uri": "tuhuscm://com.tuhu.scm/login/result",
   "end_session_redirect_uri": "net.openid.appauthdemo:/oauth2redirect",
-  "authorization_scope": "openid email profile",
-  "discovery_uri": "",
+  "authorization_scope": "openid yewuapi offline_access",
+  "discovery_uri": "https://access.tuhu.work/.well-known/openid-configuration",
   "authorization_endpoint_uri": "",
   "token_endpoint_uri": "",
   "registration_endpoint_uri": "",
